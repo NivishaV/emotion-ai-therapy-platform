@@ -1,82 +1,154 @@
 # Emotion AI Therapy Platform
 
-A multimodal AI therapy web application that combines text emotion recognition, facial emotion analysis, voice input, gaze-aware attention cues, and session history tracking.
+AI-powered multimodal mental health support platform that combines:
 
-## Features
+- Text Emotion Recognition
+- Facial Emotion Detection
+- Voice / Speech Analysis
+- Gaze & Attention Awareness
+- Multimodal Fusion Intelligence
+- Session History Tracking
+- OTP Email Authentication
 
-- User signup and login with email OTP verification
-- MongoDB-based user storage
-- Text emotion recognition
-- Face emotion detection
-- Voice input and speech-to-text processing
-- Multimodal emotion fusion
-- AI therapist response generation
-- Session summary and session history
-- Modern Flask web interface
+Designed as an intelligent therapy assistant for emotionally aware human-computer interaction.
 
-## Tech Stack
+---
+
+# Project Overview
+
+Emotion AI Therapy Platform helps users express emotions through multiple channels:
+
+1. Text messages  
+2. Facial expressions  
+3. Voice tone / speech  
+4. Combined multimodal signals  
+
+The system analyzes emotional state and provides intelligent therapeutic responses.
+
+---
+
+# Core Features
+
+## Authentication System
+
+- Secure Login / Signup
+- OTP Email Verification
+- Password Strength Validation
+- Session Login Protection
+
+## Emotion Intelligence
+
+### Text Emotion Detection
+
+Detects emotions such as:
+
+- Joy
+- Sadness
+- Anger
+- Fear
+- Neutral
+- Surprise
+
+### Facial Emotion Recognition
+
+Real-time webcam emotion recognition using:
+
+- OpenFace
+- RetinaFace
+- Landmark Detection
+
+### Voice Emotion Pipeline
+
+- Speech-to-text
+- Tone analysis
+- Voice emotional cues
+
+### Multimodal Fusion
+
+Combines:
+
+- Text + Face
+- Face + Voice
+- Text + Voice
+- Full Combined Inputs
+
+For more accurate emotional understanding.
+
+---
+
+# User Interface
+
+Modern responsive web application includes:
+
+- Premium Home Dashboard
+- Session Mode Selection
+- Live Therapy Chat Interface
+- Camera Emotion Session
+- Combined AI Session
+- Session Summary Reports
+- Session History Dashboard
+
+---
+
+# Technology Stack
+
+## Backend
 
 - Python
 - Flask
 - MongoDB
-- HTML, CSS, JavaScript
+
+## Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+## AI / ML
+
 - Transformers
-- OpenCV
-- DeepFace
-- Groq LLM API
+- OpenFace
+- Computer Vision
 - Speech Recognition
 
-## Project Structure
+---
 
-```text
-OpenFace-3.0-main/
-├── backend/
-│   ├── app.py
-│   ├── auth_utils.py
-│   ├── config.py
-│   ├── db.py
-│   ├── modules/
-│   ├── static/
-│   ├── templates/
-│   └── requirements.txt
-├── face_service.py
-├── README.md
-├── LICENSE
-└── .gitignore
+# Project Structure
 
-Setup Instructions
-Clone the repository.
-git clone <repository-url>
-cd OpenFace-3.0-main
-Create virtual environment.
-cd backend
-python -m venv backend_env
-backend_env\Scripts\activate
-Install dependencies.
+```bash
+backend/
+    app.py
+    templates/
+    static/
+    modules/
+
+face_service.py
+fusion.py
+requirements.txt
+README.md
+
+Installation
+Clone Repository
+git clone https://github.com/NivishaV/emotion-ai-therapy-platform.git
+cd emotion-ai-therapy-platform
+Install Requirements
 pip install -r requirements.txt
-Create .env file inside backend/.
-SECRET_KEY=your_secret_key
-MONGO_URI=mongodb://localhost:27017
-MONGO_DB_NAME=ai_therapy
-
-MAIL_EMAIL=your_email@gmail.com
-MAIL_APP_PASSWORD=your_gmail_app_password
-
-GROQ_API_KEY=your_groq_api_key
-Start MongoDB service.
-Run Flask backend.
+Run Backend
+cd backend
 python app.py
-Open browser.
-http://127.0.0.1:5000
-Important Note
+Future Enhancements
+Therapist voice assistant
+Depression prediction dashboard
+Personalized therapy memory
+Mobile application
+Doctor analytics portal
+Cloud deployment
+Research Goal
 
-The .env file, virtual environments, model weights, cache folders, and generated media files are ignored for security and storage reasons.
+To build an emotionally intelligent AI assistant capable of understanding human emotional state through multiple modalities.
 
 Author
 
 V. Nivisha
-M.Tech Artificial Intelligence and Data Science
-SAP Research Project
-
-
----
+M.Tech Artificial Intelligence & Data Science
+University of Lincoln SAP Project
