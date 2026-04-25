@@ -1,108 +1,230 @@
 # Emotion AI Therapy Platform
 
-AI-powered multimodal mental health support platform that combines:
+> **Multimodal Emotion Recognition and LLM-Based Adaptive Psychotherapy Response System**
 
-- Text Emotion Recognition
-- Facial Emotion Detection
-- Voice / Speech Analysis
-- Gaze & Attention Awareness
-- Multimodal Fusion Intelligence
-- Session History Tracking
-- OTP Email Authentication
+An advanced AI-powered psychotherapy assistant that understands human emotions using **text, facial expressions, voice cues, and multimodal fusion**, then generates intelligent therapeutic responses using a **Large Language Model (LLM)**.
 
-Designed as an intelligent therapy assistant for emotionally aware human-computer interaction.
+Built as a **full-stack web application** with secure authentication, real-time interaction, session tracking, and scalable modular architecture.
 
 ---
 
-# Project Overview
+# Live Repository
 
-Emotion AI Therapy Platform helps users express emotions through multiple channels:
+🔗 https://github.com/NivishaV/emotion-ai-therapy-platform
 
-1. Text messages  
-2. Facial expressions  
-3. Voice tone / speech  
-4. Combined multimodal signals  
+---
 
-The system analyzes emotional state and provides intelligent therapeutic responses.
+# Project Vision
+
+This platform was developed to create a human-centered AI therapy assistant capable of emotionally aware conversations.
+
+The system recognizes emotions from multiple user inputs:
+
+- Written text
+- Facial expressions
+- Voice / tone
+- Combined multimodal signals
+
+It then uses an **LLM-based psychotherapy response engine** to generate calm, adaptive, supportive responses. Inspired by the user's project proposal for multimodal emotion recognition, LLM integration, Flask frontend/backend, and MongoDB database architecture. :contentReference[oaicite:0]{index=0}
 
 ---
 
 # Core Features
 
-## Authentication System
+# Secure Authentication System
 
-- Secure Login / Signup
+- User Signup & Login
 - OTP Email Verification
 - Password Strength Validation
-- Session Login Protection
+- Protected Sessions
+- Logout System
 
-## Emotion Intelligence
+---
 
-### Text Emotion Detection
+# Multimodal Emotion Intelligence
 
-Detects emotions such as:
+## 1. Text Emotion Recognition
+
+Detects emotional intent from user messages.
+
+Supported emotions:
 
 - Joy
 - Sadness
-- Anger
 - Fear
-- Neutral
+- Anger
 - Surprise
+- Neutral
 
-### Facial Emotion Recognition
+Uses NLP transformer-based emotion classification.
 
-Real-time webcam emotion recognition using:
+---
 
-- OpenFace
-- RetinaFace
-- Landmark Detection
+## 2. Facial Emotion Recognition
 
-### Voice Emotion Pipeline
+Real-time webcam emotion detection using computer vision.
 
-- Speech-to-text
-- Tone analysis
-- Voice emotional cues
+Capabilities:
 
-### Multimodal Fusion
+- Face detection
+- Landmark analysis
+- Emotion inference
+- Live monitoring
 
-Combines:
+Integrated with OpenFace pipeline and face service modules.
+
+---
+
+## 3. Voice / Speech Emotion Layer
+
+Speech input processing includes:
+
+- Speech-to-text conversion
+- Voice tone capture
+- Emotional speech cues
+
+---
+
+## 4. Multimodal Fusion Engine
+
+Combines outputs from:
 
 - Text + Face
 - Face + Voice
 - Text + Voice
-- Full Combined Inputs
+- Text + Face + Voice
 
-For more accurate emotional understanding.
-
----
-
-# User Interface
-
-Modern responsive web application includes:
-
-- Premium Home Dashboard
-- Session Mode Selection
-- Live Therapy Chat Interface
-- Camera Emotion Session
-- Combined AI Session
-- Session Summary Reports
-- Session History Dashboard
+Provides more accurate emotional understanding than single-input systems.
 
 ---
 
-# Technology Stack
+# LLM-Based Adaptive Therapy Response System
 
-## Backend
+Uses a **Large Language Model (LLM)** to generate emotionally aware psychotherapy-style responses.
 
-- Python
-- Flask
-- MongoDB
+## Current Integration
+
+- Ollama (Local LLM Support)
+- Groq API (High-speed inference supported in development)
+- Expandable to GPT / Gemini / Claude
+
+## Response Capabilities
+
+- Context-aware replies
+- Emotion-sensitive conversation tone
+- Therapeutic supportive guidance
+- Memory-aware session continuity
+
+---
+
+# MongoDB Database Integration
+
+MongoDB is used for persistent storage.
+
+## Collections Include:
+
+### Users Collection
+
+Stores:
+
+- Name
+- Email
+- Password hash
+- Verification status
+- Signup date
+
+### Sessions Collection
+
+Stores:
+
+- User ID
+- Session mode
+- Emotions detected
+- Messages
+- Therapy summaries
+- Timestamps
+
+### Benefits of MongoDB
+
+- Flexible schema
+- Fast JSON-like storage
+- Ideal for AI apps
+- Easy session analytics
+
+---
+
+# Full Web Application Modules
 
 ## Frontend
 
 - HTML5
 - CSS3
 - JavaScript
+- Premium UI / UX
+- Responsive Layout
+- Glassmorphism Authentication Pages
+
+## Backend
+
+- Python Flask
+- REST APIs
+- Authentication Routes
+- Session Management
+
+## AI Modules
+
+- NLP Emotion Detection
+- Face Recognition Pipeline
+- Fusion Engine
+- LLM Response Generator
+
+---
+
+# User Workflow
+
+1. User creates account  
+2. Email OTP verification  
+3. Login securely  
+4. Choose session mode:
+
+- Chat Mode
+- Camera Mode
+- Combined Mode
+
+5. Interact with AI Therapist  
+6. Receive adaptive emotional responses  
+7. View session summary  
+8. Access session history dashboard
+
+---
+
+# Screens Included
+
+- Login Page
+- Signup Page
+- Home Dashboard
+- Session Mode Selection
+- Live Therapy Chat
+- Camera Emotion Session
+- Session Summary
+- Session History
+
+---
+
+# Tech Stack
+
+## Programming
+
+- Python
+- JavaScript
+
+## Frameworks
+
+- Flask
+
+## Database
+
+- MongoDB
 
 ## AI / ML
 
@@ -110,45 +232,45 @@ Modern responsive web application includes:
 - OpenFace
 - Computer Vision
 - Speech Recognition
+- LLM APIs
+
+## UI
+
+- HTML
+- CSS
+- JS Animations
 
 ---
 
 # Project Structure
 
 ```bash
-backend/
-    app.py
-    templates/
-    static/
-    modules/
+emotion-ai-therapy-platform/
+│── backend/
+│   ├── app.py
+│   ├── db.py
+│   ├── auth_utils.py
+│   ├── modules/
+│   ├── templates/
+│   └── static/
+│
+│── face_service.py
+│── fusion.py
+│── requirements.txt
+│── README.md
 
-face_service.py
-fusion.py
-requirements.txt
-README.md
+---
 
-Installation
-Clone Repository
+# Installation
+## Clone Repository
 git clone https://github.com/NivishaV/emotion-ai-therapy-platform.git
 cd emotion-ai-therapy-platform
-Install Requirements
+## Install Packages
 pip install -r requirements.txt
-Run Backend
+## Run
+python face_service.py
 cd backend
 python app.py
-Future Enhancements
-Therapist voice assistant
-Depression prediction dashboard
-Personalized therapy memory
-Mobile application
-Doctor analytics portal
-Cloud deployment
-Research Goal
 
-To build an emotionally intelligent AI assistant capable of understanding human emotional state through multiple modalities.
+---
 
-Author
-
-V. Nivisha
-M.Tech Artificial Intelligence & Data Science
-University of Lincoln SAP Project
