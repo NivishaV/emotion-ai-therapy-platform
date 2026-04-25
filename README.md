@@ -262,14 +262,20 @@ emotion-ai-therapy-platform/
 
 # Installation
 ## Clone Repository
+```bash
 git clone https://github.com/NivishaV/emotion-ai-therapy-platform.git
 cd emotion-ai-therapy-platform
+```
 ## Install Packages
+```bash
 pip install -r requirements.txt
+```
 ## Run
+```bash
 python face_service.py
 cd backend
 python app.py
+```
 
 ---
 
