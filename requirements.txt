@@ -1,0 +1,14 @@
+Flask
+flask-cors
+pymongo
+python-dotenv
+Werkzeug
+groq
+transformers
+torch
+opencv-python
+numpy
+Pillow
+deepface
+SpeechRecognition
+pydub

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify OTP - Emotion AI Therapy</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+
+<body class="auth-bg otp-page">
+  <div class="auth-overlay"></div>
+
+  <div class="auth-center-shell">
+    <div class="glass-auth-card otp-card">
+      <h1>Verify OTP</h1>
+
+      <p>
+        Enter the OTP sent to <strong>{{ email }}</strong>
+      </p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST">
+        <label>OTP Code</label>
+        <input
+          type="text"
+          name="otp"
+          maxlength="6"
+          inputmode="numeric"
+          placeholder="Enter 6-digit OTP"
+          required
+        >
+
+        <button type="submit">Verify Account</button>
+      </form>
+
+      <div class="auth-footer">
+        Go back to <a href="{{ url_for('signup') }}">Sign up</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

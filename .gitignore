@@ -1,0 +1,70 @@
+weights/*.pkl
+weights/*.bin
+
+# Secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+env/
+openface_env/
+backend_env/
+backend/backend_env/
+backend/venv/
+
+# Media files
+*.wav
+*.mp3
+*.avi
+*.mp4
+*.mov
+
+# Logs
+*.log
+
+# Models / Weights / Generated
+weights/
+model/
+models/
+feature_maps_output/
+*.pth
+*.pt
+*.pkl
+*.onnx
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test / unwanted files
+test.py
+test2.py
+test_voice.py
+test_mongo.py
+test_ollama.py
+text_test.py
+video_test.py
+demo.py
+demo2.py
+experiment.py
+evaluation.py
+model_test.ipynb
+input.wav
+output.avi
+sample_voice.wav
+
+images/
+interface.py
+train_mix_au_dev.py
+train_mix_au_dev_tune.py
+webcam_mediapipe.py
+webcam_openface.py

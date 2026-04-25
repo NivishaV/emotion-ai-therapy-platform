@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Session History - Emotion AI Therapy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <section class="screen active">
+      <div class="history-page-shell">
+
+        <header class="history-topbar">
+          <div class="history-topbar-left">
+            <a href="{{ url_for('home') }}" class="back-btn history-back-btn">←</a>
+            <div>
+              <h1>Session History</h1>
+              <p>{{ user_name }}’s previous therapy sessions</p>
+            </div>
+          </div>
+
+          <a href="{{ url_for('logout') }}" class="logout-btn">Log Out</a>
+        </header>
+
+        <div class="history-page-content">
+          {% if history_items and history_items|length > 0 %}
+            <div class="history-grid">
+              {% for item in history_items %}
+                <div class="history-record-card">
+                  <div class="history-record-head">
+                    <div>
+                      <h3>{{ item.mode|capitalize }} Mode</h3>
+                      <p>
+                        {% if item.ended_at %}
+                          {{ item.ended_at.strftime('%d %b %Y, %I:%M %p') }}
+                        {% else %}
+                          Session record
+                        {% endif %}
+                      </p>
+                    </div>
+                    <div class="history-final-pill">
+                      {{ item.final_emotion|capitalize if item.final_emotion else 'Neutral' }}
+                    </div>
+                  </div>
+
+                  <div class="history-record-stats">
+                    <div class="history-stat-box">
+                      <span>Duration</span>
+                      <strong>{{ item.duration_min }} min</strong>
+                    </div>
+
+                    <div class="history-stat-box">
+                      <span>Messages</span>
+                      <strong>{{ item.message_count }}</strong>
+                    </div>
+                  </div>
+
+                  <div class="history-analysis-block">
+                    <div class="history-analysis-row">
+                      <span>Face Emotion</span>
+                      <strong>{{ item.face_emotion if item.face_emotion else '-' }}</strong>
+                    </div>
+
+                    <div class="history-analysis-row">
+                      <span>Text Emotion</span>
+                      <strong>{{ item.text_emotion if item.text_emotion else '-' }}</strong>
+                    </div>
+
+                    <div class="history-analysis-row">
+                      <span>Final Observance</span>
+                      <strong>{{ item.final_emotion if item.final_emotion else '-' }}</strong>
+                    </div>
+                  </div>
+
+                  <div class="history-emotions-wrap">
+                    <span class="history-section-label">Detected Emotions</span>
+                    <div class="history-pill-wrap">
+                      {% if item.detected_emotions and item.detected_emotions|length > 0 %}
+                        {% for emotion in item.detected_emotions %}
+                          <span class="history-emotion-pill">{{ emotion|capitalize }}</span>
+                        {% endfor %}
+                      {% else %}
+                        <span class="history-emotion-pill">Neutral</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="history-empty-state">
+              <div class="history-empty-icon">🕘</div>
+              <h2>No session history yet</h2>
+              <p>Complete a therapy session and it will appear here.</p>
+              <a href="{{ url_for('home') }}" class="primary-btn">Go to Home</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

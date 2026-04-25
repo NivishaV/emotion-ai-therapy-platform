@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emotion AI Therapy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- Welcome -->
+    <section id="screen-welcome" class="screen active">
+  <div class="home-page-shell">
+
+    <header class="home-topbar">
+      <div class="brand-area">
+        <div class="brand-icon">😊</div>
+        <div class="brand-text">
+          <h1>Emotion AI Therapy</h1>
+          <p>Secure multimodal mental health support platform</p>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+  <div class="user-menu">
+    <button class="user-avatar-btn" id="user-menu-btn" type="button">
+      {{ user_name[:1] if user_name else 'U' }}
+    </button>
+
+    <div class="user-dropdown hidden" id="user-dropdown">
+      <div class="user-dropdown-header">
+        <span class="user-dropdown-label">Signed in as</span>
+        <strong>{{ user_name }}</strong>
+      </div>
+
+      <a href="{{ url_for('session_history') }}" class="user-dropdown-item">Session History</a>
+      <a href="{{ url_for('logout') }}" class="user-dropdown-item logout-item">Log Out</a>
+    </div>
+  </div>
+</div>
+    </header>
+
+    <main class="home-main-grid fixed-home-grid">
+      <div class="home-left-column">
+        <div class="home-hero-card">
+          
+
+          <h2>Welcome back, {{ user_name }}</h2>
+          <p class="hero-subtext">
+            Begin a personalized therapy session powered by text emotion recognition,
+            facial affect analysis, gaze-aware attention cues, and multimodal fusion.
+            </p>
+            <p class="hero-subtext">
+            Talk it out live...
+            Untangle your thoughts...
+            Tackle emotional well being...
+          </p>
+
+
+          <div class="hero-main-content">
+            <div class="hero-illustration-wrap">
+              <img
+                src="{{ url_for('static', filename='images/ai.jpeg') }}"
+                alt="Emotion therapy visual"
+                class="hero-illustration"
+              >
+            </div>
+
+            <div class="hero-feature-grid">
+              <div class="hero-feature-card">
+                <div class="hero-feature-icon">💬</div>
+                <div>
+                  <h3>Text-Aware Support</h3>
+                  <p>Emotion-sensitive responses from your written or transcribed input.</p>
+                </div>
+              </div>
+
+              <div class="hero-feature-card">
+                <div class="hero-feature-icon">📷</div>
+                <div>
+                  <h3>Face & Gaze Analysis</h3>
+                  <p>Live monitoring of face emotion, attention, and gaze direction.</p>
+                </div>
+              </div>
+
+              <div class="hero-feature-card">
+                <div class="hero-feature-icon">🧠</div>
+                <div>
+                  <h3>Multimodal Fusion</h3>
+                  <p>Combines text and visual signals for richer session understanding.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-action-row centered-action-row">
+  <button class="primary-btn start-session-home-btn" id="start-session-btn">Start Session</button>
+</div>
+        </div>
+      </div>
+
+      <aside class="home-side-panel fixed-side-panel">
+        <div class="home-side-card">
+          <h3>Steps</h3>
+          <div class="side-step-list">
+            <div class="side-step-item">
+              <span class="side-step-index">1</span>
+              <div>
+                <strong>Select a session mode</strong>
+                <p>Chat, Camera, or Combined interaction.</p>
+              </div>
+            </div>
+
+            <div class="side-step-item">
+              <span class="side-step-index">2</span>
+              <div>
+                <strong>Begin emotional interaction</strong>
+                <p>Provide text, voice, or multimodal input.</p>
+              </div>
+            </div>
+
+            <div class="side-step-item">
+              <span class="side-step-index">3</span>
+              <div>
+                <strong>Receive guided support</strong>
+                <p>View emotion-aware therapy responses and summaries.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-side-card image-card">
+          <h3>Therapy Connection</h3>
+          <div class="home-side-image-wrap">
+            <img
+              src="{{ url_for('static', filename='images/brainrot.jpeg') }}"
+              alt="Therapy connection visual"
+              class="home-side-image"
+            >
+          </div>
+          <p class="home-image-caption">
+        A guided space where emotional complexity can be recognized and transformed into personalized support and meaningful emotional healing.
+          </p>
+        </div>
+      </aside>
+    </main>
+
+  </div>
+</section>
+
+    <!-- Mode Selection -->
+    <section id="screen-mode" class="screen">
+      <div class="page-wrap">
+        <div class="top-line">
+          <button class="back-btn" data-back="welcome">←</button>
+          <div>
+            <h2 class="page-title">Choose Your Session Mode</h2>
+            <p class="page-subtitle">Select how you want to interact today</p>
+          </div>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card" data-mode="camera">
+            <div class="mode-icon">📷</div>
+            <div class="mode-title">Camera Mode</div>
+            <div class="mode-desc">Face emotion + voice session</div>
+          </button>
+
+          <button class="mode-card" data-mode="chat">
+            <div class="mode-icon">💬</div>
+            <div class="mode-title">Chat Mode</div>
+            <div class="mode-desc">Text therapy session</div>
+          </button>
+
+          <button class="mode-card" data-mode="combined">
+            <div class="mode-icon">🧠</div>
+            <div class="mode-title">Combined Mode</div>
+            <div class="mode-desc">Face + text multimodal session</div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Session -->
+    <section id="screen-session" class="screen">
+      <div class="session-container">
+        <div class="session-header">
+          <div class="session-left">
+            <button class="back-btn" id="session-back-btn">←</button>
+            <div>
+              <h2 id="session-title">Session</h2>
+              <p id="session-subtitle">Mode</p>
+            </div>
+          </div>
+          <div class="session-status">
+            <span class="live-dot"></span>
+            <span>Live</span>
+          </div>
+        </div>
+
+        <!-- CAMERA MODE LAYOUT -->
+        <div id="camera-mode-layout" class="mode-layout hidden">
+          <div class="camera-only-grid">
+            <div class="camera-stack">
+              <div class="camera-card">
+                <div class="camera-preview-wrap">
+                  <video id="camera-video" autoplay muted playsinline></video>
+                  <div class="gaze-widget">
+                    <canvas id="gaze-canvas-overlay" width="120" height="120"></canvas>
+                    <div class="gaze-widget-label">Gaze</div>
+                  </div>
+
+                  <div class="live-pill">● Live</div>
+
+                  <div id="face-emotion-badge" class="emotion-badge">
+                    <span id="face-emotion-text">Neutral</span>
+                    <span id="face-emotion-score">0%</span>
+                  </div>
+
+                  <div id="camera-caption" class="camera-caption">
+                    Waiting for voice input...
+                  </div>
+                </div>
+
+                <div class="camera-footer">
+                  <div class="camera-footer-line">
+                    <span>Emotion Detected:</span>
+                    <strong id="camera-footer-emotion">Neutral</strong>
+                  </div>
+                  <div class="camera-footer-line muted" id="camera-footer-message">
+                    System is monitoring face status.
+                  </div>
+                </div>
+              </div>
+
+              <div class="camera-info-card">
+                <div class="mini-info-row"><span>Face Detected</span><strong id="face-detected">-</strong></div>
+                <div class="mini-info-row"><span>Centered</span><strong id="face-centered">-</strong></div>
+                <div class="mini-info-row"><span>Attention</span><strong id="face-distraction">-</strong></div>
+                <div class="mini-info-row"><span>Gaze Yaw</span><strong id="face-yaw">-</strong></div>
+                <div class="mini-info-row"><span>Gaze Pitch</span><strong id="face-pitch">-</strong></div>
+
+                <div class="camera-btn-row">
+                  <button class="secondary-btn" id="start-camera-btn">Start Camera</button>
+                  <button class="secondary-btn outline" id="stop-camera-btn">Stop Camera</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="response-card">
+              <div class="response-head">
+                <h3>Voice Session</h3>
+                <div class="response-meta">
+                  <div class="meta-chip">
+                    <span>Text Emotion:</span>
+                    <strong id="camera-text-emotion">-</strong>
+                  </div>
+                  <div class="meta-chip">
+                    <span>Face Emotion:</span>
+                    <strong id="camera-face-emotion-inline">-</strong>
+                  </div>
+                  <div class="meta-chip">
+                    <span>Final:</span>
+                    <strong id="camera-final-emotion">-</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="voice-transcript-card">
+                <div class="msg-label">Transcript</div>
+                <div id="camera-transcript" class="transcript-box">No speech recorded yet.</div>
+              </div>
+
+              <div class="voice-reply-card">
+                <div class="msg-label">AI Therapist</div>
+                <div id="camera-reply" class="reply-box">
+                  Your response will appear here after recording.
+                </div>
+              </div>
+
+              <div class="camera-voice-controls">
+                <button class="icon-btn mic-btn" id="camera-record-btn">🎤</button>
+                <div id="camera-recording-status" class="recording-status hidden">Recording voice...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAT MODE LAYOUT -->
+        <div id="chat-mode-layout" class="mode-layout hidden">
+          <div class="chat-only-wrap">
+            <div class="chat-card centered-chat">
+              <div id="chat-box" class="chat-box">
+                <div class="msg bot">
+                  <div class="msg-label">AI Therapist</div>
+                  <div class="msg-bubble">Hello, I’m here for you. How are you feeling today?</div>
+                </div>
+              </div>
+
+              <div id="typing-indicator" class="typing-wrap hidden">
+                <div class="msg bot">
+                  <div class="msg-label">AI Therapist</div>
+                  <div class="msg-bubble typing-bubble">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat-meta chat-only-meta">
+                <div class="meta-chip">
+                  <span>Text Emotion:</span>
+                  <strong id="text-emotion">-</strong>
+                </div>
+              </div>
+
+              <div class="suggestions">
+                <button class="suggestion-chip">I feel anxious</button>
+                <button class="suggestion-chip">I feel stressed today</button>
+                <button class="suggestion-chip">I had a good day</button>
+                <button class="suggestion-chip">I feel sad</button>
+              </div>
+
+              <div class="input-area">
+                <textarea id="message-input" placeholder="Type a message..."></textarea>
+                <button class="icon-btn mic-btn" id="record-btn">🎤</button>
+                <button class="send-btn" id="send-btn">Send</button>
+              </div>
+
+              <div id="recording-status" class="recording-status hidden">Recording voice...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMBINED MODE LAYOUT -->
+        <div id="combined-mode-layout" class="mode-layout hidden">
+          <div class="combined-grid">
+            <div class="camera-stack">
+              <div class="camera-card">
+                <div class="camera-preview-wrap">
+                  <video id="combined-camera-video" autoplay muted playsinline></video>
+                  <div class="gaze-widget">
+                    <canvas id="combined-gaze-canvas-overlay" width="120" height="120"></canvas>
+                    <div class="gaze-widget-label">Gaze</div>
+                  </div>
+
+                  <div class="live-pill">● Live</div>
+
+                  <div id="combined-face-emotion-badge" class="emotion-badge">
+                    <span id="combined-face-emotion-text">Neutral</span>
+                    <span id="combined-face-emotion-score">0%</span>
+                  </div>
+
+                  <div id="combined-camera-caption" class="camera-caption">
+                    Waiting for input...
+                  </div>
+                </div>
+
+                <div class="camera-footer">
+                  <div class="camera-footer-line">
+                    <span>Emotion Detected:</span>
+                    <strong id="combined-camera-footer-emotion">Neutral</strong>
+                  </div>
+                  <div class="camera-footer-line muted" id="combined-camera-footer-message">
+                    System is monitoring face status.
+                  </div>
+                </div>
+              </div>
+
+              <div class="camera-info-card">
+                <div class="mini-info-row"><span>Face Detected</span><strong id="combined-face-detected">-</strong></div>
+                <div class="mini-info-row"><span>Centered</span><strong id="combined-face-centered">-</strong></div>
+                <div class="mini-info-row"><span>Attention</span><strong id="combined-face-distraction">-</strong></div>
+                <div class="mini-info-row"><span>Gaze Yaw</span><strong id="combined-face-yaw">-</strong></div>
+                <div class="mini-info-row"><span>Gaze Pitch</span><strong id="combined-face-pitch">-</strong></div>
+
+                <div class="camera-btn-row">
+                  <button class="secondary-btn" id="combined-start-camera-btn">Start Camera</button>
+                  <button class="secondary-btn outline" id="combined-stop-camera-btn">Stop Camera</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-panel">
+              <div class="chat-card">
+                <div id="combined-chat-box" class="chat-box">
+                  <div class="msg bot">
+                    <div class="msg-label">AI Therapist</div>
+                    <div class="msg-bubble">Hello, Im here for you. How are you feeling today?</div>
+                  </div>
+                </div>
+
+                <div id="combined-typing-indicator" class="typing-wrap hidden">
+                  <div class="msg bot">
+                    <div class="msg-label">AI Therapist</div>
+                    <div class="msg-bubble typing-bubble">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="chat-meta">
+                  <div class="meta-chip">
+                    <span>Text Emotion:</span>
+                    <strong id="combined-text-emotion">-</strong>
+                  </div>
+                  <div class="meta-chip">
+                    <span>Face Emotion:</span>
+                    <strong id="combined-face-emotion-inline">-</strong>
+                  </div>
+                  <div class="meta-chip">
+                    <span>Final:</span>
+                    <strong id="combined-final-emotion">-</strong>
+                  </div>
+                </div>
+
+                <div class="suggestions">
+                  <button class="suggestion-chip">I feel anxious</button>
+                  <button class="suggestion-chip">I feel stressed today</button>
+                  <button class="suggestion-chip">I had a good day</button>
+                  <button class="suggestion-chip">I feel sad</button>
+                </div>
+
+                <div class="input-area">
+                  <textarea id="combined-message-input" placeholder="Type a message..."></textarea>
+                  <button class="icon-btn mic-btn" id="combined-record-btn">🎤</button>
+                  <button class="send-btn" id="combined-send-btn">Send</button>
+                </div>
+
+                <div id="combined-recording-status" class="recording-status hidden">Recording voice...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="session-bottom-actions">
+          <button class="secondary-btn outline" id="end-session-btn">End Session</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section id="screen-summary" class="screen">
+      <div class="summary-wrap">
+        <div class="summary-card">
+          <h2>Session Summary</h2>
+          <p class="summary-sub" id="summary-date">Today's overview</p>
+
+          <div class="summary-stat-grid">
+            <div class="summary-stat">
+              <span>Duration</span>
+              <strong id="summary-duration">0 min</strong>
+            </div>
+            <div class="summary-stat">
+              <span>Messages</span>
+              <strong id="summary-messages">0</strong>
+            </div>
+          </div>
+
+          <div id="combined-summary-block" class="summary-section hidden">
+            <h3>Combined Analysis</h3>
+
+            <div class="summary-analysis-row">
+              <span>Face Emotion Detected:</span>
+              <strong id="summary-face">-</strong>
+            </div>
+
+            <div class="summary-analysis-row">
+              <span>Text Emotion Detected:</span>
+              <strong id="summary-text">-</strong>
+            </div>
+
+            <div class="summary-analysis-row">
+              <span>Final Observance:</span>
+              <strong id="summary-final">-</strong>
+            </div>
+          </div>
+
+          <div class="summary-section">
+            <h3>Emotions Detected</h3>
+            <div id="summary-emotions" class="emotion-pill-wrap"></div>
+          </div>
+
+          <div class="summary-section">
+            <h3>Mood Trend</h3>
+            <div class="chart-box">
+              <canvas id="mood-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="summary-quote" id="summary-quote">
+            Great job today. See you next time!
+          </div>
+
+          <button class="primary-btn" id="finish-btn">Finish</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

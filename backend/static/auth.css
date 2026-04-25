@@ -1,0 +1,380 @@
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:"DM Sans", Arial, sans-serif;
+}
+
+/* =========================
+   BACKGROUND SYSTEM
+========================= */
+
+.auth-bg{
+  min-height:100vh;
+  background-size:110%;
+  background-position:center center;
+  background-repeat:no-repeat;
+  overflow:hidden;
+  position:relative;
+}
+
+/* LOGIN PAGE BG */
+.login-page{
+  background-image:
+    linear-gradient(rgba(10,18,28,.35), rgba(10,18,28,.45)),
+    url("/static/images/login-bg.png");
+}
+
+/* SIGNUP PAGE BG */
+.signup-page{
+  background-image:
+    linear-gradient(rgba(10,18,28,.28), rgba(10,18,28,.42)),
+    url("/static/images/signup-bg.png");
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.auth-overlay{
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.28), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(78,182,191,.24), transparent 34%),
+    rgba(255,255,255,.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+/* =========================
+   CENTER WRAP
+========================= */
+
+.auth-center-shell{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:28px;
+  position:relative;
+  z-index:2;
+}
+
+/* =========================
+   GLASS CARD
+========================= */
+
+.glass-auth-card{
+  width:min(460px,94vw);
+  padding:42px;
+  border-radius:32px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.52);
+  box-shadow:0 30px 90px rgba(0,0,0,.22);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  animation:authFadeUp .7s ease both;
+}
+
+@keyframes authFadeUp{
+  from{
+    opacity:0;
+    transform:translateY(24px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.glass-auth-card h1{
+  margin:0 0 10px;
+  font-size:2.6rem;
+  line-height:1.1;
+  color:#142231;
+  letter-spacing:-0.04em;
+}
+
+.glass-auth-card p{
+  margin:0 0 28px;
+  color:#5f6874;
+  font-size:1rem;
+  line-height:1.6;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.glass-auth-card form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.glass-auth-card label{
+  font-weight:700;
+  color:#1e2d3a;
+  font-size:.92rem;
+  margin-top:6px;
+}
+
+.glass-auth-card input{
+  width:100%;
+  height:54px;
+  border:1px solid rgba(30,45,58,.12);
+  border-radius:16px;
+  padding:0 16px;
+  font-size:1rem;
+  background:rgba(255,255,255,.80);
+  color:#142231;
+  outline:none;
+  transition:.25s ease;
+}
+
+.glass-auth-card input:focus{
+  border-color:#4eb6bf;
+  box-shadow:0 0 0 4px rgba(78,182,191,.16);
+  background:rgba(255,255,255,.95);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.glass-auth-card button{
+  margin-top:18px;
+  height:56px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(135deg,#4eb6bf,#2f97a1);
+  color:#fff;
+  font-size:1.05rem;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 14px 30px rgba(47,151,161,.28);
+  transition:.25s ease;
+}
+
+.glass-auth-card button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 38px rgba(47,151,161,.34);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.auth-footer{
+  margin-top:22px;
+  text-align:center;
+  color:#5f6874;
+  font-size:.95rem;
+}
+
+.auth-footer a{
+  color:#2f97a1;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.auth-footer a:hover{
+  text-decoration:underline;
+}
+
+/* =========================
+   FLASH
+========================= */
+
+.flash{
+  padding:12px 14px;
+  border-radius:14px;
+  margin-bottom:16px;
+  font-weight:700;
+  font-size:.92rem;
+}
+
+.flash.success{
+  background:rgba(231,248,238,.92);
+  color:#20784a;
+  border:1px solid rgba(86,180,120,.35);
+}
+
+.flash.error{
+  background:rgba(255,235,235,.92);
+  color:#a33b3b;
+  border:1px solid rgba(210,90,90,.35);
+}
+
+/* =========================
+   PASSWORD HELP
+========================= */
+
+.password-rules{
+  font-size:.82rem;
+  color:#5f6874;
+  line-height:1.45;
+  margin-top:-4px;
+  margin-bottom:6px;
+}
+
+.strength-wrap{
+  margin-top:-4px;
+  margin-bottom:8px;
+}
+
+.strength-bar{
+  width:100%;
+  height:8px;
+  background:rgba(30,45,58,.12);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+#strengthFill{
+  width:0%;
+  height:100%;
+  border-radius:999px;
+  transition:.25s ease;
+}
+
+#strengthText{
+  display:block;
+  margin-top:6px;
+  font-size:.82rem;
+  font-weight:700;
+}
+
+/* =========================
+   SIGNUP PAGE ONLY
+========================= */
+
+.signup-page .glass-auth-card{
+  width:min(430px,92vw);
+  padding:28px 30px;
+  border-radius:26px;
+}
+
+.signup-page .glass-auth-card h1{
+  font-size:2.15rem;
+  margin:0 0 8px;
+}
+
+.signup-page .glass-auth-card form{
+  gap:8px;
+}
+
+.signup-page .glass-auth-card label{
+  font-size:.88rem;
+  margin-top:2px;
+}
+
+.signup-page .glass-auth-card input{
+  height:48px;
+  border-radius:14px;
+  font-size:.95rem;
+}
+
+.signup-page .password-rules{
+  font-size:.78rem;
+  line-height:1.35;
+  margin-top:-2px;
+  margin-bottom:4px;
+}
+
+.signup-page .strength-wrap{
+  margin-top:0;
+  margin-bottom:6px;
+}
+
+.signup-page .strength-bar{
+  height:6px;
+}
+
+.signup-page .glass-auth-card button{
+  height:50px;
+  margin-top:10px;
+  border-radius:15px;
+  font-size:.96rem;
+}
+
+.signup-page .auth-footer{
+  margin-top:14px;
+  font-size:.88rem;
+}
+
+/* =========================
+   SHORT HEIGHT SCREEN
+========================= */
+
+@media (max-height:820px){
+  .signup-page .glass-auth-card{
+    transform:scale(.92);
+    transform-origin:center;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:600px){
+
+  .auth-center-shell{
+    padding:18px;
+  }
+
+  .glass-auth-card{
+    padding:30px 24px;
+    border-radius:26px;
+  }
+
+  .glass-auth-card h1{
+    font-size:2rem;
+  }
+
+  .signup-page .glass-auth-card{
+    width:94vw;
+    padding:22px 20px;
+    border-radius:22px;
+  }
+
+  .signup-page .glass-auth-card h1{
+    font-size:1.8rem;
+  }
+
+  .signup-page .glass-auth-card input{
+    height:44px;
+  }
+
+  .signup-page .glass-auth-card button{
+    height:46px;
+  }
+
+}
+
+/* OTP PAGE */
+.otp-page {
+  background-image:
+    linear-gradient(rgba(10,18,28,.30), rgba(10,18,28,.42)),
+    url("/static/images/signup-bg.png");
+}
+
+.otp-card {
+  width: min(440px, 92vw);
+  text-align: left;
+}
+
+.otp-card input {
+  text-align: center;
+  letter-spacing: 6px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
