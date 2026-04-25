@@ -25,7 +25,7 @@ The system recognizes emotions from multiple user inputs:
 - Voice / tone
 - Combined multimodal signals
 
-It then uses an **LLM-based psychotherapy response engine** to generate calm, adaptive, supportive responses. Inspired by the user's project proposal for multimodal emotion recognition, LLM integration, Flask frontend/backend, and MongoDB database architecture. :contentReference[oaicite:0]{index=0}
+It then uses an **LLM-based psychotherapy response engine** to generate calm, adaptive, supportive responses. Inspired by the user's project proposal for multimodal emotion recognition, LLM integration, Flask frontend/backend, and MongoDB database architecture. 
 
 ---
 
@@ -70,6 +70,7 @@ Capabilities:
 - Landmark analysis
 - Emotion inference
 - Live monitoring
+- Gaze detection
 
 Integrated with OpenFace pipeline and face service modules.
 
@@ -105,8 +106,6 @@ Uses a **Large Language Model (LLM)** to generate emotionally aware psychotherap
 ## Current Integration
 
 - Ollama (Local LLM Support)
-- Groq API (High-speed inference supported in development)
-- Expandable to GPT / Gemini / Claude
 
 ## Response Capabilities
 
@@ -258,7 +257,7 @@ emotion-ai-therapy-platform/
 │── fusion.py
 │── requirements.txt
 │── README.md
-
+```
 ---
 
 # Installation
